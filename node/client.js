@@ -1,6 +1,7 @@
 var net = require('net');
 function getConnection(connName){
-  var client = net.connect({port: 8107, host:'172.28.94.218'}, function() {
+  var client = net.connect({port: 8107, host:'10.10.202.92'}, function() {
+    console.log(connName)
     this.setTimeout(500);
     this.setEncoding('utf8');
     this.on('data', function(data) {
@@ -9,6 +10,7 @@ function getConnection(connName){
     this.on('end', function() {
     });
     this.on('error', function(err) {
+        console.log(err)
     });
     this.on('timeout', function() {
     });

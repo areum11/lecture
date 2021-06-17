@@ -3,7 +3,8 @@ var server = net.createServer(function(client) {
   client.setTimeout(500);
   client.setEncoding('utf8');
   client.on('data', function(data) {
-    writeData(client, 'Sending: ' + data.toString());
+    username = data.split("|")[0]
+    writeData(client, 'Sending: Nice to meet you' + username);
   });
   client.on('end', function() {
     server.getConnections(function(err, count){
@@ -16,9 +17,11 @@ var server = net.createServer(function(client) {
 });
 
 server.listen(8107, function() {
+    console.log("Listen 8107")
   server.on('close', function(){
   });
   server.on('error', function(err){
+    console.log(err)
   });
 });
 function writeData(socket, data){
